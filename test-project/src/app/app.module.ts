@@ -8,6 +8,13 @@ import { ProjectComponent } from './modules/project/project/project.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MyProjectsComponent } from './modules/my-projects/my-projects/my-projects.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { AssemblyComponent } from './modules/assembly/assembly/assembly.component';
+import { PartComponent } from './modules/part/part/part.component';
+import { RawMaterialComponent } from './modules/raw-material/raw-material/raw-material.component';
+import { RawPartComponent } from './modules/raw-part/raw-part/raw-part.component';
+import { CommodityComponent } from './modules/commodity/commodity/commodity.component';
+import { StepComponent } from './modules/step/step/step.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +22,19 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     LayoutComponent,
     ProjectComponent,
     MyProjectsComponent,
+    AssemblyComponent,
+    PartComponent,
+    RawMaterialComponent,
+    RawPartComponent,
+    CommodityComponent,
+    StepComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

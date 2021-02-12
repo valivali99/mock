@@ -1,0 +1,24 @@
+<mat-icon class="assembly">build_circle</mat-icon>
+{{assembly.name}}
+
+<div>
+    <mat-icon class="subassembly">play_circle</mat-icon>Subbassemblies
+    <ng-container *ngIf="assembly.assemblies">
+        <div *ngFor="let assembly of assembly.assemblies">
+            <app-assembly [assembly]=assembly></app-assembly>
+        </div>
+    </ng-container>
+</div>
+
+<div>
+    <mat-icon class="process">repeat_on</mat-icon>Processes
+    <ng-container *ngIf="assembly.steps">
+        <div *ngFor="let step of assembly.steps">
+            <app-step [step]=step></app-step>
+        </div>
+    </ng-container>
+</div>
+
+<div>
+    <mat-icon class="result">receipt</mat-icon>Result Details
+</div>

@@ -1,1 +1,10 @@
-<p>project works!</p>
+<mat-icon>donut_small</mat-icon>
+{{project.name}}
+
+<div *ngFor="let assembly of project.assemblies">
+    <app-assembly [assembly]=assembly></app-assembly>
+</div>
+
+<div *ngFor="let part of project.parts">
+    <app-part [part]=part></app-part>
+</div>

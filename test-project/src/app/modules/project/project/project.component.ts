@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service'
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-project',
@@ -8,9 +7,12 @@ import { DataService } from '../../services/data.service'
 })
 export class ProjectComponent implements OnInit {
 
+  @Input() project: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.project);
   }
 
 }

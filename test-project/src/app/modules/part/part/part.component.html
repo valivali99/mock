@@ -1,0 +1,32 @@
+<mat-icon>extension</mat-icon>
+{{part.name}}
+
+<div>
+    <mat-icon>reorder</mat-icon>
+    Materials
+</div>
+
+<div *ngFor="let rawMaterial of part.rawMaterials">
+    <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
+</div>
+
+<div *ngFor="let rawPart of part.rawParts">
+    <app-raw-part [rawPart]=rawPart></app-raw-part>
+</div>
+
+<div *ngFor="let commodity of part.commodities">
+    <app-commodity [commodity]=commodity></app-commodity>
+</div>
+
+<div>
+    <mat-icon class="process">repeat_on</mat-icon>Processes
+    <ng-container *ngIf="part.steps">
+        <div *ngFor="let step of part.steps">
+            <app-step [step]=step></app-step>
+        </div>
+    </ng-container>
+</div>
+
+<div>
+    <mat-icon class="result">receipt</mat-icon>Result Details
+</div>
