@@ -1,24 +1,56 @@
-<mat-icon class="assembly">build_circle</mat-icon>
+<mat-icon *ngIf="hideComponents">keyboard_arrow_down</mat-icon>
+
+<mat-icon *ngIf="!hideComponents">keyboard_arrow_right</mat-icon>
+
+<mat-icon class="assembly" (click)="toggleExpansion()">build_circle</mat-icon>
 {{assembly.name}}
 
-<div>
-    <mat-icon class="subassembly">play_circle</mat-icon>Subbassemblies
-    <ng-container *ngIf="assembly.assemblies">
-        <div *ngFor="let assembly of assembly.assemblies">
-            <app-assembly [assembly]=assembly></app-assembly>
-        </div>
-    </ng-container>
-</div>
+<ng-container *ngIf="hideComponents">
 
-<div>
-    <mat-icon class="process">repeat_on</mat-icon>Processes
-    <ng-container *ngIf="assembly.steps">
-        <div *ngFor="let step of assembly.steps">
-            <app-step [step]=step></app-step>
-        </div>
-    </ng-container>
-</div>
+    <div>
+        <mat-icon *ngIf="assembly.assemblies && hideSubassemblies">keyboard_arrow_down</mat-icon>
 
-<div>
-    <mat-icon class="result">receipt</mat-icon>Result Details
-</div>
+        <mat-icon *ngIf="assembly.assemblies && !hideSubassemblies">keyboard_arrow_right</mat-icon>
+
+        <mat-icon class="subassembly" (click)="toggleSubassemblies()">play_circle</mat-icon>Subbassemblies
+
+        <ng-container *ngIf="assembly.assemblies && hideSubassemblies">
+            <div *ngFor="let assembly of assembly.assemblies">
+                <app-assembly [assembly]=assembly></app-assembly>
+            </div>
+        </ng-container>
+    </div>
+
+    <div>
+        <mat-icon *ngIf="assembly.parts && hideParts">keyboard_arrow_down</mat-icon>
+
+        <mat-icon *ngIf="assembly.parts && !hideParts">keyboard_arrow_right</mat-icon>
+
+        <mat-icon class="part" (click)="toggleParts()">savings</mat-icon>Parts
+
+        <ng-container *ngIf="assembly.parts && hideParts">
+            <div *ngFor="let part of assembly.parts">
+                <app-part [part]=part></app-part>
+            </div>
+        </ng-container>
+    </div>
+
+    <div>
+        <mat-icon *ngIf="assembly.steps && hideSteps">keyboard_arrow_down</mat-icon>
+
+        <mat-icon *ngIf="assembly.steps && !hideSteps">keyboard_arrow_right</mat-icon>
+
+        <mat-icon class="process" (click)="toggleSteps()">repeat_on</mat-icon>Processes
+
+        <ng-container *ngIf="assembly.steps && hideSteps">
+            <div *ngFor="let step of assembly.steps">
+                <app-step [step]=step></app-step>
+            </div>
+        </ng-container>
+    </div>
+
+    <div>
+        <mat-icon class="result">receipt</mat-icon>Result Details
+    </div>
+
+</ng-container>

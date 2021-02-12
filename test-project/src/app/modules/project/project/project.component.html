@@ -1,10 +1,16 @@
-<mat-icon>donut_small</mat-icon>
+<mat-icon *ngIf="(project.assemblies || project.parts) && hideComponents">keyboard_arrow_down</mat-icon>
+
+<mat-icon *ngIf="(project.assemblies || project.parts) && !hideComponents">keyboard_arrow_right</mat-icon>
+
+<mat-icon (click)="toggleExpansion()">donut_small</mat-icon>
 {{project.name}}
 
-<div *ngFor="let assembly of project.assemblies">
-    <app-assembly [assembly]=assembly></app-assembly>
-</div>
+<ng-container *ngIf="hideComponents">
+    <div *ngFor="let assembly of project.assemblies">
+        <app-assembly [assembly]=assembly></app-assembly>
+    </div>
 
-<div *ngFor="let part of project.parts">
-    <app-part [part]=part></app-part>
-</div>
+    <div *ngFor="let part of project.parts">
+        <app-part [part]=part></app-part>
+    </div>
+</ng-container>

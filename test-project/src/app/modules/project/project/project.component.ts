@@ -8,11 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProjectComponent implements OnInit {
 
   @Input() project: any;
+  hideComponents: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.project);
   }
 
+  toggleExpansion() {
+    this.hideComponents = !this.hideComponents;
+  }
 }

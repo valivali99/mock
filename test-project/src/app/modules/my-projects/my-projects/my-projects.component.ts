@@ -19,7 +19,6 @@ export class MyProjectsComponent implements OnInit {
   getData() {
     this.dataService.getData().subscribe((data: any) => {
       this.projects = data
-      console.log(data);
     });
   }
 }
