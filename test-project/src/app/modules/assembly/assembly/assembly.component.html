@@ -1,63 +1,107 @@
-<mat-icon *ngIf="hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
+<mat-accordion>
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle>
 
-<mat-icon *ngIf="!hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
+        <mat-expansion-panel-header #panelL (click)="panelL._toggle()">
 
-<mat-icon class="assembly">build_circle</mat-icon>
-{{assembly.name}}
+            <mat-panel-title>
 
-<ng-container *ngIf="hideComponents">
+                <mat-icon (click)="toggleAssembliesPanel()">{{toggleAssemblies}}</mat-icon>
 
-    <div>
-        <ng-container *ngIf="assembly.assemblies">
+                <mat-icon class="assembly">build_circle</mat-icon>
 
-            <mat-icon *ngIf="hideSubassemblies" (click)="toggleSubassemblies()">
-                keyboard_arrow_down</mat-icon>
+                <span class="title">{{assembly.name}}</span>
 
-            <mat-icon *ngIf="!hideSubassemblies" (click)="toggleSubassemblies()">
-                keyboard_arrow_right</mat-icon>
+            </mat-panel-title>
 
-        </ng-container>
+        </mat-expansion-panel-header>
 
-        <mat-icon class="subassembly">play_circle</mat-icon>Subbassemblies
+        <div>
 
-        <ng-container *ngIf="assembly.assemblies && hideSubassemblies">
-            <div *ngFor="let assembly of assembly.assemblies">
-                <app-assembly [assembly]=assembly></app-assembly>
-            </div>
-        </ng-container>
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
 
-    </div>
+                    <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-    <div>
-        <mat-icon *ngIf="assembly.parts && hideParts" (click)="toggleParts()">keyboard_arrow_down</mat-icon>
+                        <mat-panel-title>
 
-        <mat-icon *ngIf="assembly.parts && !hideParts" (click)="toggleParts()">keyboard_arrow_right</mat-icon>
+                            <mat-icon (click)="toggleSubassembliesPanel()">{{toggleSubassemblies}}</mat-icon>
 
-        <mat-icon class="part">savings</mat-icon>Parts
+                            <mat-icon class="subassembly">play_circle</mat-icon>
 
-        <ng-container *ngIf="assembly.parts && hideParts">
-            <div *ngFor="let part of assembly.parts">
-                <app-part [part]=part></app-part>
-            </div>
-        </ng-container>
-    </div>
+                            <span class="title">Subbassemblies</span>
 
-    <div>
-        <mat-icon *ngIf="assembly.steps && hideSteps" (click)="toggleSteps()">keyboard_arrow_down</mat-icon>
+                        </mat-panel-title>
 
-        <mat-icon *ngIf="assembly.steps && !hideSteps" (click)="toggleSteps()">keyboard_arrow_right</mat-icon>
+                    </mat-expansion-panel-header>
 
-        <mat-icon class="process">repeat_on</mat-icon>Processes
+                    <div *ngFor="let assembly of assembly.assemblies">
+                        <app-assembly [assembly]=assembly></app-assembly>
+                    </div>
 
-        <div *ngIf="assembly.steps && hideSteps">
-            <div *ngFor="let step of assembly.steps">
-                <app-step [step]=step></app-step>
-            </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
         </div>
-    </div>
 
-    <div>
-        <mat-icon class="result">receipt</mat-icon>Result Details
-    </div>
+        <div>
 
-</ng-container>
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelJ (click)="panelJ._toggle()">
+
+                        <mat-panel-title>
+
+                            <mat-icon (click)="togglePartsPanel()">{{toggleParts}}</mat-icon>
+
+                            <mat-icon class="part">savings</mat-icon>
+
+                            <span class="title">Parts</span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let part of assembly.parts">
+                        <app-part [part]=part></app-part>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
+
+        <div>
+
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelK (click)="panelK._toggle()">
+
+                        <mat-panel-title>
+
+                            <mat-icon (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+
+                            <mat-icon class="process">repeat_on</mat-icon>
+
+                            <span class="title">Processes</span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <div *ngFor="let step of assembly.steps">
+                        <app-step [step]=step></app-step>
+                    </div>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+
+        </div>
+
+        <div>
+            <mat-icon class="result">receipt</mat-icon>
+            <span class="title">Result Details</span>
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

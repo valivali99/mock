@@ -1,13 +1,26 @@
-<mat-icon *ngIf="projects && hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
+<div class="tab">
 
-<mat-icon *ngIf="projects && !hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
+    <mat-accordion>
+        <mat-expansion-panel class="mat-elevation-z0" hideToggle>
 
-<mat-icon>all_inbox</mat-icon> My projects
+            <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-<div class="tab" *ngIf="hideComponents">
+                <mat-panel-title>
 
-    <div *ngFor="let project of projects">
-        <app-project [project]=project></app-project>
-    </div>
+                    <mat-icon (click)="togglePanel()">{{toggleDirection}}</mat-icon>
+
+                    <mat-icon>all_inbox</mat-icon>
+                    <span class="title">My projects</span>
+
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let project of projects">
+                <app-project [project]=project></app-project>
+            </div>
+
+        </mat-expansion-panel>
+    </mat-accordion>
 
 </div>

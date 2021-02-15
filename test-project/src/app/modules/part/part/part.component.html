@@ -1,58 +1,90 @@
-<mat-icon *ngIf="hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
+<mat-accordion>
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle>
 
-<mat-icon *ngIf="!hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
+        <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-<mat-icon>extension</mat-icon>
-{{part.name}}
+            <mat-panel-title>
 
-<ng-container *ngIf="hideComponents">
+                <mat-icon class="expansion-icon" (click)="togglePartsPanel()">{{toggleParts}}</mat-icon>
 
-    <div>
-        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && hideMaterials"
-            (click)="toggleMaterials()">keyboard_arrow_down</mat-icon>
+                <mat-icon>extension</mat-icon>
 
-        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && !hideMaterials"
-            (click)="toggleMaterials()">keyboard_arrow_right</mat-icon>
+                <span class="title">{{part.name}}</span>
 
-        <mat-icon>reorder</mat-icon>
-        Materials
+            </mat-panel-title>
 
-        <div *ngIf="hideMaterials">
+        </mat-expansion-panel-header>
 
-            <div *ngFor="let rawMaterial of part.rawMaterials">
-                <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
-            </div>
+        <div>
 
-            <div *ngFor="let rawPart of part.rawParts">
-                <app-raw-part [rawPart]=rawPart></app-raw-part>
-            </div>
+            <mat-accordion>
 
-            <div *ngFor="let commodity of part.commodities">
-                <app-commodity [commodity]=commodity></app-commodity>
-            </div>
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelJ (click)="panelJ._toggle()">
+
+                        <mat-panel-title>
+
+                            <mat-icon class="expansion-icon" (click)="toggleMaterialsPanel()">{{toggleMaterials}}</mat-icon>
+
+                            <mat-icon>reorder</mat-icon>
+
+                            <span class="title">Materials</span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <div *ngFor="let rawMaterial of part.rawMaterials">
+                        <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
+                    </div>
+
+                    <div *ngFor="let rawPart of part.rawParts">
+                        <app-raw-part [rawPart]=rawPart></app-raw-part>
+                    </div>
+
+                    <div *ngFor="let commodity of part.commodities">
+                        <app-commodity [commodity]=commodity></app-commodity>
+                    </div>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div>
+
+            <mat-accordion>
+
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelK (click)="panelK._toggle()">
+
+                        <mat-panel-title>
+
+                            <mat-icon class="expansion-icon" (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+
+                            <mat-icon class="process">repeat_on</mat-icon>
+
+                            <span class="title">Processes</span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <div *ngFor="let step of part.steps">
+                        <app-step [step]=step></app-step>
+                    </div>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
 
         </div>
 
-    </div>
-
-    <div>
-        <mat-icon *ngIf="part.steps && hideSteps" (click)="toggleSteps()">keyboard_arrow_down</mat-icon>
-
-        <mat-icon *ngIf="part.steps && !hideSteps" (click)="toggleSteps()">keyboard_arrow_right</mat-icon>
-
-        <mat-icon class="process">repeat_on</mat-icon>Processes
-
-        <div *ngIf="part.steps && hideSteps">
-            <div *ngFor="let step of part.steps">
-                <app-step [step]=step></app-step>
-            </div>
+        <div>
+            <mat-icon class="result">receipt</mat-icon>
+            <span class="title">Result Details</span>
         </div>
-    </div>
 
-    <div>
-        <mat-icon class="empty">alarm</mat-icon>
-
-        <mat-icon class="result">receipt</mat-icon>Result Details
-    </div>
-
-</ng-container>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -15,6 +15,7 @@ import { RawMaterialComponent } from './modules/raw-material/raw-material/raw-ma
 import { RawPartComponent } from './modules/raw-part/raw-part/raw-part.component';
 import { CommodityComponent } from './modules/commodity/commodity/commodity.component';
 import { StepComponent } from './modules/step/step/step.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { StepComponent } from './modules/step/step/step.component';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

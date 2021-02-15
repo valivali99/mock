@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatExpansionPanel, MatExpansionPanelHeader } from '@angular/material/expansion';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { DataService } from '../../services/data.service';
 })
 export class MyProjectsComponent implements OnInit {
 
+  @ViewChild("panelH", {static:false}) panelH: MatExpansionPanelHeader;
+  toggleDirection: string = "keyboard_arrow_right";
   projects: any;
   hideComponents: boolean = false;
 
@@ -16,14 +19,16 @@ export class MyProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
-  //expansion pannel
+
   getData() {
     this.dataService.getData().subscribe((data: any) => {
       this.projects = data
     });
   }
 
-  toggleExpansion() {
-    this.hideComponents = !this.hideComponents;
+  togglePanel() {
+    this.panelH._toggle();
+    this.toggleDirection = this.panelH._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
+
 }

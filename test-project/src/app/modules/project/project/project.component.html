@@ -1,16 +1,33 @@
-<mat-icon *ngIf="(project.assemblies || project.parts) && hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
+<div>
 
-<mat-icon *ngIf="(project.assemblies || project.parts) && !hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
+    <mat-accordion>
 
-<mat-icon>donut_small</mat-icon>
-{{project.name}}
+        <mat-expansion-panel class="mat-elevation-z0" hideToggle>
 
-<ng-container *ngIf="hideComponents">
-    <div *ngFor="let assembly of project.assemblies">
-        <app-assembly [assembly]=assembly></app-assembly>
-    </div>
+            <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-    <div *ngFor="let part of project.parts">
-        <app-part [part]=part></app-part>
-    </div>
-</ng-container>
+                <mat-panel-title>
+
+                    <mat-icon class="expansion-icon" (click)="togglePanel()">{{toggleDirection}}</mat-icon>
+
+                    <mat-icon>donut_small</mat-icon>
+
+                    <span class="title">{{project.name}}</span>
+
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let assembly of project.assemblies">
+                <app-assembly [assembly]=assembly></app-assembly>
+            </div>
+
+            <div *ngFor="let part of project.parts">
+                <app-part [part]=part></app-part>
+            </div>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+</div>

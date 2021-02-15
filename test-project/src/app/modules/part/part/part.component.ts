@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatExpansionPanelHeader } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-part',
@@ -7,26 +8,32 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PartComponent implements OnInit {
 
+  @ViewChild("panelH", { static: false }) panelH: MatExpansionPanelHeader;
+  @ViewChild("panelJ", { static: false }) panelJ: MatExpansionPanelHeader;
+  @ViewChild("panelK", { static: false }) panelK: MatExpansionPanelHeader;
   @Input() part: any;
-  hideComponents: boolean = false;
-  hideMaterials: boolean = false;
-  hideSteps: boolean = false;
+  toggleProcesses: string = "keyboard_arrow_right";
+  toggleMaterials: string = "keyboard_arrow_right";
+  toggleParts: string = "keyboard_arrow_right";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleExpansion() {
-    this.hideComponents = !this.hideComponents;
+  toggleMaterialsPanel() {
+    this.panelJ._toggle();
+    this.toggleMaterials = this.panelJ._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  toggleMaterials() {
-    this.hideMaterials = !this.hideMaterials;
+  togglePartsPanel() {
+    this.panelH._toggle();
+    this.toggleParts = this.panelH._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  toggleSteps() {
-    this.hideSteps = !this.hideSteps;
+  toggleProcessesPanel() {
+    this.panelK._toggle();
+    this.toggleProcesses = this.panelK._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
 }

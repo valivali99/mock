@@ -3,21 +3,42 @@ div {
 }
 
 .assembly {
-    color: rgb(180, 15, 15);;
+    color: rgb(180, 15, 15);
 }
 
 .subassembly {
-    color: rgb(255, 136, 0);;
+    color: rgb(255, 136, 0);
 }
 
 .process {
-    color: rgb(92, 232, 12);;
+    color: rgb(92, 232, 12);
 }
 
 .result {
-    color: rgb(34, 92, 10);;
+    color: rgb(34, 92, 10);
+    vertical-align: middle;
 }
 
 .part {
     color: pink;
+}
+
+.mat-expansion-panel-header {
+    flex-direction: row-reverse;
+    user-select: none;
+    padding: 0;
+    height: 2rem;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: transparent !important;
+}
+
+.title {
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
 }

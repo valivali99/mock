@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatExpansionPanelHeader } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-assembly',
@@ -7,30 +8,39 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AssemblyComponent implements OnInit {
 
+  @ViewChild("panelH", { static: false }) panelH: MatExpansionPanelHeader;
+  @ViewChild("panelJ", { static: false }) panelJ: MatExpansionPanelHeader;
+  @ViewChild("panelK", { static: false }) panelK: MatExpansionPanelHeader;
+  @ViewChild("panelL", { static: false }) panelL: MatExpansionPanelHeader;
+  toggleSubassemblies: string = "keyboard_arrow_right";
+  toggleAssemblies: string = "keyboard_arrow_right";
+  toggleParts: string = "keyboard_arrow_right";
+  toggleProcesses: string = "keyboard_arrow_right";
   @Input() assembly: any;
-  hideComponents: boolean = false;
-  hideSubassemblies: boolean = false;
-  hideParts: boolean = false;
-  hideSteps: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleExpansion() {
-    this.hideComponents = !this.hideComponents;
+  toggleSubassembliesPanel() {
+    this.panelH._toggle();
+    this.toggleSubassemblies = this.panelH._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  toggleSubassemblies() {
-    this.hideSubassemblies = !this.hideSubassemblies;
+  togglePartsPanel() {
+    this.panelJ._toggle();
+    this.toggleParts = this.panelJ._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  toggleParts() {
-    this.hideParts = !this.hideParts;
+  toggleProcessesPanel() {
+    this.panelK._toggle();
+    this.toggleProcesses = this.panelK._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  toggleSteps() {
-    this.hideSteps = !this.hideSteps;
+  toggleAssembliesPanel() {
+    this.panelL._toggle();
+    this.toggleAssemblies = this.panelL._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
+
 }

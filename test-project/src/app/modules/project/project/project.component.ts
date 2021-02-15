@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatExpansionPanelHeader } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-project',
@@ -7,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
+  @ViewChild("panelH", { static: false }) panelH: MatExpansionPanelHeader;
+  toggleDirection: string = "keyboard_arrow_right";
   @Input() project: any;
   hideComponents: boolean = false;
 
@@ -15,7 +18,9 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleExpansion() {
-    this.hideComponents = !this.hideComponents;
+  togglePanel() {
+    this.panelH._toggle();
+    this.toggleDirection = this.panelH._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
+
 }
