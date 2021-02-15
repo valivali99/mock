@@ -1,3 +1,13 @@
-<div *ngFor="let project of projects">
-    <app-project [project]=project></app-project>
+<mat-icon *ngIf="projects && hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
+
+<mat-icon *ngIf="projects && !hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
+
+<mat-icon>all_inbox</mat-icon> My projects
+
+<div class="tab" *ngIf="hideComponents">
+
+    <div *ngFor="let project of projects">
+        <app-project [project]=project></app-project>
+    </div>
+
 </div>

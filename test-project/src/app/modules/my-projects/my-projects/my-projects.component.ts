@@ -9,16 +9,21 @@ import { DataService } from '../../services/data.service';
 export class MyProjectsComponent implements OnInit {
 
   projects: any;
+  hideComponents: boolean = false;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getData();
   }
-
+  //expansion pannel
   getData() {
     this.dataService.getData().subscribe((data: any) => {
       this.projects = data
     });
+  }
+
+  toggleExpansion() {
+    this.hideComponents = !this.hideComponents;
   }
 }

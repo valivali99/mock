@@ -1,8 +1,8 @@
-<mat-icon *ngIf="(project.assemblies || project.parts) && hideComponents">keyboard_arrow_down</mat-icon>
+<mat-icon *ngIf="(project.assemblies || project.parts) && hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
 
-<mat-icon *ngIf="(project.assemblies || project.parts) && !hideComponents">keyboard_arrow_right</mat-icon>
+<mat-icon *ngIf="(project.assemblies || project.parts) && !hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
 
-<mat-icon (click)="toggleExpansion()">donut_small</mat-icon>
+<mat-icon>donut_small</mat-icon>
 {{project.name}}
 
 <ng-container *ngIf="hideComponents">

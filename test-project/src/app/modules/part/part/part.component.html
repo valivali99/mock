@@ -1,21 +1,23 @@
-<mat-icon *ngIf="hideComponents">keyboard_arrow_down</mat-icon>
+<mat-icon *ngIf="hideComponents" (click)="toggleExpansion()">keyboard_arrow_down</mat-icon>
 
-<mat-icon *ngIf="!hideComponents">keyboard_arrow_right</mat-icon>
+<mat-icon *ngIf="!hideComponents" (click)="toggleExpansion()">keyboard_arrow_right</mat-icon>
 
-<mat-icon (click)="toggleExpansion()">extension</mat-icon>
+<mat-icon>extension</mat-icon>
 {{part.name}}
 
 <ng-container *ngIf="hideComponents">
 
     <div>
-        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && hideMaterials">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && hideMaterials"
+            (click)="toggleMaterials()">keyboard_arrow_down</mat-icon>
 
-        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && !hideMaterials">keyboard_arrow_right</mat-icon>
+        <mat-icon *ngIf="(part.rawParts || part.rawMaterials || part.commodities) && !hideMaterials"
+            (click)="toggleMaterials()">keyboard_arrow_right</mat-icon>
 
-        <mat-icon (click)="toggleMaterials()">reorder</mat-icon>
+        <mat-icon>reorder</mat-icon>
         Materials
 
-        <ng-container *ngIf="hideMaterials">
+        <div *ngIf="hideMaterials">
 
             <div *ngFor="let rawMaterial of part.rawMaterials">
                 <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
@@ -29,24 +31,27 @@
                 <app-commodity [commodity]=commodity></app-commodity>
             </div>
 
-        </ng-container>
+        </div>
+
     </div>
 
     <div>
-        <mat-icon *ngIf="part.steps && hideSteps">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="part.steps && hideSteps" (click)="toggleSteps()">keyboard_arrow_down</mat-icon>
 
-        <mat-icon *ngIf="part.steps && !hideSteps">keyboard_arrow_right</mat-icon>
+        <mat-icon *ngIf="part.steps && !hideSteps" (click)="toggleSteps()">keyboard_arrow_right</mat-icon>
 
-        <mat-icon class="process" (click)="toggleSteps()">repeat_on</mat-icon>Processes
+        <mat-icon class="process">repeat_on</mat-icon>Processes
 
-        <ng-container *ngIf="part.steps && hideSteps">
+        <div *ngIf="part.steps && hideSteps">
             <div *ngFor="let step of part.steps">
                 <app-step [step]=step></app-step>
             </div>
-        </ng-container>
+        </div>
     </div>
 
     <div>
+        <mat-icon class="empty">alarm</mat-icon>
+
         <mat-icon class="result">receipt</mat-icon>Result Details
     </div>
 
