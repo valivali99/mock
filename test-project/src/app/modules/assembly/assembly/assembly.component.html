@@ -24,7 +24,11 @@
 
                         <mat-panel-title>
 
-                            <mat-icon (click)="toggleSubassembliesPanel()">{{toggleSubassemblies}}</mat-icon>
+                            <mat-icon *ngIf="assembly.assemblies; else noAssemblies"
+                                (click)="toggleSubassembliesPanel()">
+                                {{toggleSubassemblies}}</mat-icon>
+
+                            <ng-template #noAssemblies><span class="tab"></span></ng-template>
 
                             <mat-icon class="subassembly">play_circle</mat-icon>
 
@@ -52,7 +56,10 @@
 
                         <mat-panel-title>
 
-                            <mat-icon (click)="togglePartsPanel()">{{toggleParts}}</mat-icon>
+                            <mat-icon *ngIf="assembly.parts; else noParts" (click)="togglePartsPanel()">{{toggleParts}}
+                            </mat-icon>
+
+                            <ng-template #noParts><span class="tab"></span></ng-template>
 
                             <mat-icon class="part">savings</mat-icon>
 
@@ -61,9 +68,11 @@
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
+
                     <div *ngFor="let part of assembly.parts">
                         <app-part [part]=part></app-part>
                     </div>
+
                 </mat-expansion-panel>
             </mat-accordion>
 
@@ -78,7 +87,10 @@
 
                         <mat-panel-title>
 
-                            <mat-icon (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+                            <mat-icon *ngIf="assembly.steps; else noSteps" (click)="toggleProcessesPanel()">
+                                {{toggleProcesses}}</mat-icon>
+
+                            <ng-template #noSteps><span class="tab"></span></ng-template>
 
                             <mat-icon class="process">repeat_on</mat-icon>
 

@@ -25,7 +25,10 @@
 
                         <mat-panel-title>
 
-                            <mat-icon class="expansion-icon" (click)="toggleMaterialsPanel()">{{toggleMaterials}}</mat-icon>
+                            <mat-icon *ngIf="part.rawMaterials || part.rawParts || part.commodities; else noContent"
+                                class="expansion-icon" (click)="toggleMaterialsPanel()">{{toggleMaterials}}</mat-icon>
+
+                            <ng-template #noContent><span class="tab"></span></ng-template>
 
                             <mat-icon>reorder</mat-icon>
 
@@ -61,7 +64,10 @@
 
                         <mat-panel-title>
 
-                            <mat-icon class="expansion-icon" (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+                            <mat-icon *ngIf="part.steps; else noSteps" class="expansion-icon"
+                                (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+
+                            <ng-template #noSteps><span class="tab"></span></ng-template>
 
                             <mat-icon class="process">repeat_on</mat-icon>
 
