@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
+import { CalculationService } from '../../services/calculation.service';
 
 @Component({
   selector: 'app-assembly',
@@ -18,7 +19,7 @@ export class AssemblyComponent implements OnInit {
   toggleProcesses: string = "keyboard_arrow_right";
   @Input() assembly: any;
 
-  constructor() { }
+  constructor(private calculationService: CalculationService) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +42,10 @@ export class AssemblyComponent implements OnInit {
   toggleAssembliesPanel() {
     this.panelL._toggle();
     this.toggleAssemblies = this.panelL._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
+  }
+
+  calculateCost() {
+    this.calculationService.setCurrentSubject(this.assembly.name, this.assembly.cost);
   }
 
 }

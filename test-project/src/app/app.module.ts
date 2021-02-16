@@ -16,6 +16,9 @@ import { RawPartComponent } from './modules/raw-part/raw-part/raw-part.component
 import { CommodityComponent } from './modules/commodity/commodity/commodity.component';
 import { StepComponent } from './modules/step/step/step.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+import { DisplayCalculationComponent } from './modules/display-calculation/display-calculation.component';
+
 
 @NgModule({
   declarations: [
@@ -29,12 +32,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
     RawPartComponent,
     CommodityComponent,
     StepComponent,
+    DisplayCalculationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
+    MatMenuModule,
     MatIconModule,
     MatExpansionModule
   ],

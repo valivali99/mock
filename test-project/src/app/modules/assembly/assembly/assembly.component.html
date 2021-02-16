@@ -7,9 +7,13 @@
 
                 <mat-icon (click)="toggleAssembliesPanel()">{{toggleAssemblies}}</mat-icon>
 
-                <mat-icon class="assembly">build_circle</mat-icon>
+                <span (click)="calculateCost()">
 
-                <span class="title">{{assembly.name}}</span>
+                    <mat-icon class="assembly">build_circle</mat-icon>
+
+                    <span class="title">{{assembly.name}}</span>
+
+                </span>
 
             </mat-panel-title>
 
@@ -30,9 +34,9 @@
 
                             <ng-template #noAssemblies><span class="tab"></span></ng-template>
 
-                            <mat-icon class="subassembly">play_circle</mat-icon>
+                            <mat-icon class="subassembly">analytics</mat-icon>
 
-                            <span class="title">Subbassemblies</span>
+                            <span class="title">Subassemblies</span>
 
                         </mat-panel-title>
 
@@ -61,7 +65,7 @@
 
                             <ng-template #noParts><span class="tab"></span></ng-template>
 
-                            <mat-icon class="part">savings</mat-icon>
+                            <mat-icon class="part">view_in_ar</mat-icon>
 
                             <span class="title">Parts</span>
 

@@ -1,4 +1,4 @@
-<div>
+<div class="tab">
 
     <mat-accordion>
 
@@ -10,19 +10,37 @@
 
                     <mat-icon class="expansion-icon" (click)="togglePanel()">{{toggleDirection}}</mat-icon>
 
-                    <mat-icon>donut_small</mat-icon>
+                    <span (click)="calculateCost()" (contextmenu)="onContextMenu($event)">
 
-                    <span class="title">{{project.name}}</span>
+                        <mat-icon class="project">donut_small</mat-icon>
+
+                        <span class="title">{{project.name}}</span>
+
+                    </span>
+
+                    <div [matMenuTriggerFor]="contextMenu"></div>
+
+                    <mat-menu #contextMenu="matMenu" xPosition="after">
+
+                        <div *ngFor="let option of options" mat-menu-item>
+
+                            <mat-icon>{{option.iconName}}</mat-icon>
+
+                            <span class="option">{{option.optionName}}</span>
+
+                        </div>
+
+                    </mat-menu>
 
                 </mat-panel-title>
 
             </mat-expansion-panel-header>
 
-            <div *ngFor="let assembly of project.assemblies">
+            <div class="tab" *ngFor="let assembly of project.assemblies">
                 <app-assembly [assembly]=assembly></app-assembly>
             </div>
 
-            <div *ngFor="let part of project.parts">
+            <div class="tab" *ngFor="let part of project.parts">
                 <app-part [part]=part></app-part>
             </div>
 
