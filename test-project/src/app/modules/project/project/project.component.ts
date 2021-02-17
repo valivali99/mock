@@ -3,6 +3,7 @@ import { MatExpansionPanelHeader } from '@angular/material/expansion';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { OptionsService } from '../../services/options.service'
 import { CalculationService } from '../../services/calculation.service'
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-project',
@@ -20,7 +21,8 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private optionsService: OptionsService,
-    private calculationService: CalculationService
+    private calculationService: CalculationService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class ProjectComponent implements OnInit {
 
   calculateCost() {
     this.calculationService.setCurrentSubject(this.project.name, this.project.cost);
+    this.dataService.selectSubject(this.project);
   }
 
   onContextMenu(event: MouseEvent) {
@@ -51,5 +54,15 @@ export class ProjectComponent implements OnInit {
       e.preventDefault();
     });
   }
+
+  // getSelectedState() {
+  //   let currentSelectedSubject = this.dataService.selectedSubject$.value;
+  //   if ((currentSelectedSubject.type === this.project.type) && (currentSelectedSubject.id === this.project.id)) {
+  //     console.log("selected");
+  //     return "selected";
+  //   }
+  //   console.log("snot-elected");
+  //   return "not-selected";
+  // }
 
 }
