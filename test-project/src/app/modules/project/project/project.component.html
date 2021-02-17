@@ -6,11 +6,11 @@
 
             <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-                <mat-panel-title>
+                <mat-panel-title [ngClass]="getSelectedState()">
 
                     <mat-icon class="expansion-icon" (click)="togglePanel()">{{toggleDirection}}</mat-icon>
 
-                    <span (click)="calculateCost()" (contextmenu)="onContextMenu($event)">
+                    <span (click)="calculateCost(project)" (contextmenu)="onContextMenu($event)">
 
                         <mat-icon class="project">donut_small</mat-icon>
 

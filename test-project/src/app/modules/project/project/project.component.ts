@@ -35,9 +35,9 @@ export class ProjectComponent implements OnInit {
     this.toggleDirection = this.panelH._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  calculateCost() {
-    this.calculationService.setCurrentSubject(this.project.name, this.project.cost);
-    this.dataService.selectSubject(this.project);
+  calculateCost(entity: any) {
+    this.calculationService.setCurrentSubject(entity.name, entity.cost);
+    this.dataService.selectSubject(entity.id, entity.type);
   }
 
   onContextMenu(event: MouseEvent) {
@@ -55,14 +55,13 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  // getSelectedState() {
-  //   let currentSelectedSubject = this.dataService.selectedSubject$.value;
-  //   if ((currentSelectedSubject.type === this.project.type) && (currentSelectedSubject.id === this.project.id)) {
-  //     console.log("selected");
-  //     return "selected";
-  //   }
-  //   console.log("snot-elected");
-  //   return "not-selected";
-  // }
+  getSelectedState() {
+    let currentSelectedSubject = this.dataService.selectedSubject$.value;
+
+    if ((currentSelectedSubject.type === 'project') && (currentSelectedSubject.id === this.project.id)) {
+      return "selected";
+    }
+    return "not-selected";
+  }
 
 }

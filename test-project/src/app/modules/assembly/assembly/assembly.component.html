@@ -3,11 +3,11 @@
 
         <mat-expansion-panel-header #panelL (click)="panelL._toggle()">
 
-            <mat-panel-title>
+            <mat-panel-title [ngClass]="getSelectedState(assembly.id,'assembly')">
 
                 <mat-icon (click)="toggleAssembliesPanel()">{{toggleAssemblies}}</mat-icon>
 
-                <span (click)="calculateCost()">
+                <span (click)="calculateCost(assembly)">
 
                     <mat-icon class="assembly">build_circle</mat-icon>
 
@@ -26,17 +26,21 @@
 
                     <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-                        <mat-panel-title>
+                        <mat-panel-title [ngClass]="getSelectedState(assembly.id,'subassembly')">
 
                             <mat-icon *ngIf="assembly.assemblies; else noAssemblies"
                                 (click)="toggleSubassembliesPanel()">
                                 {{toggleSubassemblies}}</mat-icon>
 
-                            <ng-template #noAssemblies><span class="tab"></span></ng-template>
+                            <span (click)="selectEntity(assembly.id,'subassembly')">
 
-                            <mat-icon class="subassembly">analytics</mat-icon>
+                                <ng-template #noAssemblies><span class="tab"></span></ng-template>
 
-                            <span class="title">Subassemblies</span>
+                                <mat-icon class="subassembly">analytics</mat-icon>
+
+                                <span class="title">Subassemblies</span>
+
+                            </span>
 
                         </mat-panel-title>
 
@@ -58,16 +62,20 @@
 
                     <mat-expansion-panel-header #panelJ (click)="panelJ._toggle()">
 
-                        <mat-panel-title>
+                        <mat-panel-title [ngClass]="getSelectedState(assembly.id,'parts')">
 
                             <mat-icon *ngIf="assembly.parts; else noParts" (click)="togglePartsPanel()">{{toggleParts}}
                             </mat-icon>
 
-                            <ng-template #noParts><span class="tab"></span></ng-template>
+                            <span (click)="selectEntity(assembly.id,'parts')">
 
-                            <mat-icon class="part">view_in_ar</mat-icon>
+                                <ng-template #noParts><span class="tab"></span></ng-template>
 
-                            <span class="title">Parts</span>
+                                <mat-icon class="part">view_in_ar</mat-icon>
+
+                                <span class="title">Parts</span>
+
+                            </span>
 
                         </mat-panel-title>
 
@@ -78,6 +86,7 @@
                     </div>
 
                 </mat-expansion-panel>
+
             </mat-accordion>
 
         </div>
@@ -89,16 +98,20 @@
 
                     <mat-expansion-panel-header #panelK (click)="panelK._toggle()">
 
-                        <mat-panel-title>
+                        <mat-panel-title [ngClass]="getSelectedState(assembly.id,'processes')">
 
                             <mat-icon *ngIf="assembly.steps; else noSteps" (click)="toggleProcessesPanel()">
                                 {{toggleProcesses}}</mat-icon>
 
-                            <ng-template #noSteps><span class="tab"></span></ng-template>
+                            <span (click)="selectEntity(assembly.id,'processes')">
 
-                            <mat-icon class="process">repeat_on</mat-icon>
+                                <ng-template #noSteps><span class="tab"></span></ng-template>
 
-                            <span class="title">Processes</span>
+                                <mat-icon class="process">repeat_on</mat-icon>
+
+                                <span class="title">Processes</span>
+
+                            </span>
 
                         </mat-panel-title>
 
@@ -114,7 +127,7 @@
 
         </div>
 
-        <div class="header">
+        <div class="header" [ngClass]="getSelectedState(assembly.id,'details')" (click)="selectEntity(assembly.id,'details')">
             <mat-icon class="result">receipt</mat-icon>
             <span class="title">Result Details</span>
         </div>

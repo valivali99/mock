@@ -22,10 +22,11 @@ export class DataService {
     return this.http.get<any>(this.url);
   }
 
-  selectSubject(subject: any) {
-    this.subject = subject.id;
-    this.subject = subject.type;
+  selectSubject(id: number, type: string) {
+    this.subject.id = id;
+    this.subject.type = type;
 
     this.selectedSubject$.next(this.subject);
   }
+
 }

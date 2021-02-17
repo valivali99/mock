@@ -16,6 +16,10 @@ body {
     margin-left: 0.2rem;
 }
 
-mat-panel-title:hover {
+.selected {
     background-color: rgb(199, 199, 199);
+}
+
+.not-selected {
+    background-color: transparent;
 }

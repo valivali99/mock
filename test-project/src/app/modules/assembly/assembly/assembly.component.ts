@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
 import { CalculationService } from '../../services/calculation.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-assembly',
@@ -19,7 +20,10 @@ export class AssemblyComponent implements OnInit {
   toggleProcesses: string = "keyboard_arrow_right";
   @Input() assembly: any;
 
-  constructor(private calculationService: CalculationService) { }
+  constructor(
+    private calculationService: CalculationService,
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -44,8 +48,22 @@ export class AssemblyComponent implements OnInit {
     this.toggleAssemblies = this.panelL._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
   }
 
-  calculateCost() {
-    this.calculationService.setCurrentSubject(this.assembly.name, this.assembly.cost);
+  calculateCost(entity: any) {
+    this.calculationService.setCurrentSubject(entity.name, entity.cost);
+    this.dataService.selectSubject(entity.id, entity.type);
+  }
+
+  selectEntity(id: number, type: string) {
+    this.dataService.selectSubject(id, type);
+  }
+
+  getSelectedState(id: number, type: string) {
+    let currentSelectedSubject = this.dataService.selectedSubject$.value;
+
+    if ((currentSelectedSubject.type === type) && (currentSelectedSubject.id === id)) {
+      return "selected";
+    }
+    return "not-selected";
   }
 
 }
