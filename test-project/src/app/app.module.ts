@@ -44,9 +44,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     NoopAnimationsModule,
     MatMenuModule,
     MatIconModule,
+    ReactiveFormsModule,
     MatExpansionModule,
     MaterialModule,
     HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
