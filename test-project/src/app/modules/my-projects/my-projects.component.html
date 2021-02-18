@@ -1,0 +1,31 @@
+<div>
+
+    <mat-accordion>
+
+        <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+            <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
+
+                <mat-panel-title>
+
+                    <mat-icon (click)="togglePanel()">{{toggleDirection}}</mat-icon>
+
+                    <mat-icon>all_inbox</mat-icon>
+
+                    <span class="title">My projects</span>
+
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let project of projects">
+
+                <app-project [project]=project></app-project>
+
+            </div>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+</div>

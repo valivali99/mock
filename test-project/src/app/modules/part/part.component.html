@@ -1,0 +1,121 @@
+<mat-accordion>
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+        <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
+
+            <mat-panel-title [ngClass]="getSelectedState(part.id,'part')">
+
+                <mat-icon class="expansion-icon" (click)="togglePartsPanel()">{{toggleParts}}</mat-icon>
+
+                <span (click)="selectEntity(part.id,'part')">
+
+                    <mat-icon>extension</mat-icon>
+
+                    <span class="title">{{part.name}}</span>
+
+                </span>
+
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <div>
+
+            <mat-accordion>
+
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelJ (click)="panelJ._toggle()">
+
+                        <mat-panel-title [ngClass]="getSelectedState(part.id,'materials')">
+
+                            <mat-icon *ngIf="part.rawMaterials || part.rawParts || part.commodities; else noContent"
+                                class="expansion-icon" (click)="toggleMaterialsPanel()">{{toggleMaterials}}</mat-icon>
+
+                            <span (click)="selectEntity(part.id,'materials')">
+
+                                <ng-template #noContent><span class="tab"></span></ng-template>
+
+                                <mat-icon>reorder</mat-icon>
+
+                                <span class="title">Materials</span>
+
+                            </span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <ng-container *ngFor="let rawMaterial of part.rawMaterials">
+                        <div [ngClass]="getSelectedState(rawMaterial.id,'rawMaterial')"
+                            (click)="selectEntity(rawMaterial.id,'rawMaterial')">
+                            <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngFor="let rawPart of part.rawParts">
+                        <div [ngClass]="getSelectedState(rawPart.id,'rawPart')"
+                            (click)="selectEntity(rawPart.id,'rawPart')">
+                            <app-raw-part [rawPart]=rawPart></app-raw-part>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngFor="let commodity of part.commodities">
+                        <div [ngClass]="getSelectedState(commodity.id,'commodity')"
+                            (click)="selectEntity(commodity.id,'commodity')">
+                            <app-commodity [commodity]=commodity></app-commodity>
+                        </div>
+                    </ng-container>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div>
+
+            <mat-accordion>
+
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+                    <mat-expansion-panel-header #panelK (click)="panelK._toggle()">
+
+                        <mat-panel-title [ngClass]="getSelectedState(part.id,'processes')">
+
+                            <mat-icon *ngIf="part.steps; else noSteps" class="expansion-icon"
+                                (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
+
+                            <span (click)="selectEntity(part.id,'processes')">
+
+                                <ng-template #noSteps><span class="tab"></span></ng-template>
+
+                                <mat-icon class="process">repeat_on</mat-icon>
+
+                                <span class="title">Processes</span>
+
+                            </span>
+
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <ng-container *ngFor="let step of part.steps">
+                        <div [ngClass]="getSelectedState(step.id,'step')" (click)="selectEntity(step.id,'step')">
+                            <app-step [step]=step></app-step>
+                        </div>
+                    </ng-container>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+
+        </div>
+
+        <div class="header" [ngClass]="getSelectedState(part.id,'details')">
+            <span (click)="selectEntity(part.id,'details')">
+                <mat-icon class="result">receipt</mat-icon>
+                <span class="title">Result Details</span>
+            </span>
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

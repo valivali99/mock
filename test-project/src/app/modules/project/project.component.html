@@ -1,0 +1,51 @@
+<div class="tab">
+
+    <mat-accordion>
+
+        <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+
+            <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
+
+                <mat-panel-title [ngClass]="getSelectedState(project.id,'project')">
+
+                    <mat-icon class="expansion-icon" (click)="togglePanel()">{{toggleDirection}}</mat-icon>
+
+                    <span (click)="calculateCost(project)" (contextmenu)="onContextMenu($event)">
+
+                        <mat-icon class="project">donut_small</mat-icon>
+
+                        <span class="title">{{project.name}}</span>
+
+                    </span>
+
+                    <div [matMenuTriggerFor]="contextMenu"></div>
+
+                    <mat-menu #contextMenu="matMenu" xPosition="after">
+
+                        <div *ngFor="let option of options" mat-menu-item>
+
+                            <mat-icon>{{option.iconName}}</mat-icon>
+
+                            <span class="option">{{option.optionName}}</span>
+
+                        </div>
+
+                    </mat-menu>
+
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div class="tab" *ngFor="let assembly of project.assemblies">
+                <app-assembly [assembly]=assembly></app-assembly>
+            </div>
+
+            <div class="tab" *ngFor="let part of project.parts">
+                <app-part [part]=part></app-part>
+            </div>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+</div>

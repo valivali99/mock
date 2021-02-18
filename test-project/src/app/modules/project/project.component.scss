@@ -1,0 +1,39 @@
+.tab {
+    margin-left: 1.5rem;
+}
+
+.project {
+    color: blue;
+}
+
+.part {
+    color: pink;
+}
+
+.option {
+    display: inline;
+}
+
+.mat-expansion-panel-header {
+    flex-direction: row-reverse;
+    user-select: none;
+    padding: 0;
+    height: 2rem;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: transparent !important;
+}
+
+.title {
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+}
+
+.expansion-icon {
+    color: black;
+}

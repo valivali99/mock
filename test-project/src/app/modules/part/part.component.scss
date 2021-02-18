@@ -1,0 +1,45 @@
+div {
+    margin-left: 1.5rem;
+}
+
+.tab {
+    margin-right: 1.5rem;
+}
+
+.expansion-icon {
+    color: black;
+}
+
+.process {
+    color: rgb(92, 232, 12);
+}
+
+.result {
+    color: rgb(34, 92, 10);
+    vertical-align: middle;
+    margin-left: 1.9rem;
+}
+
+.empty {
+    color: white;
+}
+
+.mat-expansion-panel-header {
+    flex-direction: row-reverse;
+    user-select: none;
+    padding: 0;
+    height: 2rem;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: transparent !important;
+}
+
+.title {
+    margin-top: 0.3rem;
+    margin-left: 0.2rem;
+}
