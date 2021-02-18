@@ -1,9 +1,9 @@
 import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { OptionsService } from '../../services/options.service'
-import { CalculationService } from '../../services/calculation.service'
-import { DataService } from '../../services/data.service';
+import { OptionsService } from '../services/options.service'
+import { CalculationService } from '../services/calculation.service'
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-project',

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
 import { Data } from '@angular/router';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-part',

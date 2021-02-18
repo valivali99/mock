@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatExpansionPanel, MatExpansionPanelHeader } from '@angular/material/expansion';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-my-projects',

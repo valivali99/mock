@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
-import { CalculationService } from '../../services/calculation.service';
-import { DataService } from '../../services/data.service';
+import { CalculationService } from '../services/calculation.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-assembly',
