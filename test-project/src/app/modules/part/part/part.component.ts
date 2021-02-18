@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatExpansionPanelHeader } from '@angular/material/expansion';
+import { Data } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-part',
@@ -16,7 +18,7 @@ export class PartComponent implements OnInit {
   toggleMaterials: string = "keyboard_arrow_right";
   toggleParts: string = "keyboard_arrow_right";
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +36,14 @@ export class PartComponent implements OnInit {
   toggleProcessesPanel() {
     this.panelK._toggle();
     this.toggleProcesses = this.panelK._isExpanded() ? "keyboard_arrow_down" : "keyboard_arrow_right";
+  }
+
+  getSelectedState(id: number, type: string) {
+    return this.dataService.getSelectedState(id, type);
+  }
+
+  selectEntity(id: number, type: string) {
+    this.dataService.selectSubject(id, type);
   }
 
 }

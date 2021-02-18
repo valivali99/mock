@@ -55,13 +55,8 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  getSelectedState() {
-    let currentSelectedSubject = this.dataService.selectedSubject$.value;
-
-    if ((currentSelectedSubject.type === 'project') && (currentSelectedSubject.id === this.project.id)) {
-      return "selected";
-    }
-    return "not-selected";
+  getSelectedState(id: number, type: string) {
+    return this.dataService.getSelectedState(id, type);
   }
 
 }

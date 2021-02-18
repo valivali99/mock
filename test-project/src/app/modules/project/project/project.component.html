@@ -6,7 +6,7 @@
 
             <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-                <mat-panel-title [ngClass]="getSelectedState()">
+                <mat-panel-title [ngClass]="getSelectedState(project.id,'project')">
 
                     <mat-icon class="expansion-icon" (click)="togglePanel()">{{toggleDirection}}</mat-icon>
 

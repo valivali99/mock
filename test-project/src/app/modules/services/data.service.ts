@@ -29,4 +29,17 @@ export class DataService {
     this.selectedSubject$.next(this.subject);
   }
 
+  selectEntity(id: number, type: string) {
+    this.selectSubject(id, type);
+  }
+
+  getSelectedState(id: number, type: string) {
+    let currentSelectedSubject = this.selectedSubject$.value;
+
+    if ((currentSelectedSubject.type === type) && (currentSelectedSubject.id === id)) {
+      return "selected";
+    }
+    return "not-selected";
+  }
+
 }

@@ -50,7 +50,6 @@ export class AssemblyComponent implements OnInit {
 
   calculateCost(entity: any) {
     this.calculationService.setCurrentSubject(entity.name, entity.cost);
-    this.dataService.selectSubject(entity.id, entity.type);
   }
 
   selectEntity(id: number, type: string) {
@@ -58,12 +57,7 @@ export class AssemblyComponent implements OnInit {
   }
 
   getSelectedState(id: number, type: string) {
-    let currentSelectedSubject = this.dataService.selectedSubject$.value;
-
-    if ((currentSelectedSubject.type === type) && (currentSelectedSubject.id === id)) {
-      return "selected";
-    }
-    return "not-selected";
+    return this.dataService.getSelectedState(id, type);
   }
 
 }

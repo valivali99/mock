@@ -3,13 +3,17 @@
 
         <mat-expansion-panel-header #panelH (click)="panelH._toggle()">
 
-            <mat-panel-title>
+            <mat-panel-title [ngClass]="getSelectedState(part.id,'part')">
 
                 <mat-icon class="expansion-icon" (click)="togglePartsPanel()">{{toggleParts}}</mat-icon>
 
-                <mat-icon>extension</mat-icon>
+                <span (click)="selectEntity(part.id,'part')">
 
-                <span class="title">{{part.name}}</span>
+                    <mat-icon>extension</mat-icon>
+
+                    <span class="title">{{part.name}}</span>
+
+                </span>
 
             </mat-panel-title>
 
@@ -23,32 +27,45 @@
 
                     <mat-expansion-panel-header #panelJ (click)="panelJ._toggle()">
 
-                        <mat-panel-title>
+                        <mat-panel-title [ngClass]="getSelectedState(part.id,'materials')">
 
                             <mat-icon *ngIf="part.rawMaterials || part.rawParts || part.commodities; else noContent"
                                 class="expansion-icon" (click)="toggleMaterialsPanel()">{{toggleMaterials}}</mat-icon>
 
-                            <ng-template #noContent><span class="tab"></span></ng-template>
+                            <span (click)="selectEntity(part.id,'materials')">
 
-                            <mat-icon>reorder</mat-icon>
+                                <ng-template #noContent><span class="tab"></span></ng-template>
 
-                            <span class="title">Materials</span>
+                                <mat-icon>reorder</mat-icon>
+
+                                <span class="title">Materials</span>
+
+                            </span>
 
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
 
-                    <div *ngFor="let rawMaterial of part.rawMaterials">
-                        <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
-                    </div>
+                    <ng-container *ngFor="let rawMaterial of part.rawMaterials">
+                        <div [ngClass]="getSelectedState(rawMaterial.id,'rawMaterial')"
+                            (click)="selectEntity(rawMaterial.id,'rawMaterial')">
+                            <app-raw-material [rawMaterial]=rawMaterial></app-raw-material>
+                        </div>
+                    </ng-container>
 
-                    <div *ngFor="let rawPart of part.rawParts">
-                        <app-raw-part [rawPart]=rawPart></app-raw-part>
-                    </div>
+                    <ng-container *ngFor="let rawPart of part.rawParts">
+                        <div [ngClass]="getSelectedState(rawPart.id,'rawPart')"
+                            (click)="selectEntity(rawPart.id,'rawPart')">
+                            <app-raw-part [rawPart]=rawPart></app-raw-part>
+                        </div>
+                    </ng-container>
 
-                    <div *ngFor="let commodity of part.commodities">
-                        <app-commodity [commodity]=commodity></app-commodity>
-                    </div>
+                    <ng-container *ngFor="let commodity of part.commodities">
+                        <div [ngClass]="getSelectedState(commodity.id,'commodity')"
+                            (click)="selectEntity(commodity.id,'commodity')">
+                            <app-commodity [commodity]=commodity></app-commodity>
+                        </div>
+                    </ng-container>
 
                 </mat-expansion-panel>
             </mat-accordion>
@@ -62,24 +79,30 @@
 
                     <mat-expansion-panel-header #panelK (click)="panelK._toggle()">
 
-                        <mat-panel-title>
+                        <mat-panel-title [ngClass]="getSelectedState(part.id,'processes')">
 
                             <mat-icon *ngIf="part.steps; else noSteps" class="expansion-icon"
                                 (click)="toggleProcessesPanel()">{{toggleProcesses}}</mat-icon>
 
-                            <ng-template #noSteps><span class="tab"></span></ng-template>
+                            <span (click)="selectEntity(part.id,'processes')">
 
-                            <mat-icon class="process">repeat_on</mat-icon>
+                                <ng-template #noSteps><span class="tab"></span></ng-template>
 
-                            <span class="title">Processes</span>
+                                <mat-icon class="process">repeat_on</mat-icon>
+
+                                <span class="title">Processes</span>
+
+                            </span>
 
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
 
-                    <div *ngFor="let step of part.steps">
-                        <app-step [step]=step></app-step>
-                    </div>
+                    <ng-container *ngFor="let step of part.steps">
+                        <div [ngClass]="getSelectedState(step.id,'step')" (click)="selectEntity(step.id,'step')">
+                            <app-step [step]=step></app-step>
+                        </div>
+                    </ng-container>
 
                 </mat-expansion-panel>
 
@@ -87,9 +110,11 @@
 
         </div>
 
-        <div class="header">
-            <mat-icon class="result">receipt</mat-icon>
-            <span class="title">Result Details</span>
+        <div class="header" [ngClass]="getSelectedState(part.id,'details')">
+            <span (click)="selectEntity(part.id,'details')">
+                <mat-icon class="result">receipt</mat-icon>
+                <span class="title">Result Details</span>
+            </span>
         </div>
 
     </mat-expansion-panel>

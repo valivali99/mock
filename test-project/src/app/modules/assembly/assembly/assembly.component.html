@@ -7,7 +7,7 @@
 
                 <mat-icon (click)="toggleAssembliesPanel()">{{toggleAssemblies}}</mat-icon>
 
-                <span (click)="calculateCost(assembly)">
+                <span (click)="calculateCost(assembly)" (click)="selectEntity(assembly.id,'assembly')">
 
                     <mat-icon class="assembly">build_circle</mat-icon>
 
@@ -117,9 +117,13 @@
 
                     </mat-expansion-panel-header>
 
-                    <div *ngFor="let step of assembly.steps">
-                        <app-step [step]=step></app-step>
-                    </div>
+                    <ng-container *ngFor="let step of assembly.steps">
+
+                        <div [ngClass]="getSelectedState(step.id,'step')" (click)="selectEntity(step.id,'step')">
+                            <app-step [step]=step></app-step>
+                        </div>
+
+                    </ng-container>
 
                 </mat-expansion-panel>
 
@@ -127,7 +131,8 @@
 
         </div>
 
-        <div class="header" [ngClass]="getSelectedState(assembly.id,'details')" (click)="selectEntity(assembly.id,'details')">
+        <div class="header" [ngClass]="getSelectedState(assembly.id,'details')"
+            (click)="selectEntity(assembly.id,'details')">
             <mat-icon class="result">receipt</mat-icon>
             <span class="title">Result Details</span>
         </div>
