@@ -1,5 +1,119 @@
-<app-display-calculation></app-display-calculation>
+<mat-card class="content-container" *ngIf="part">
+    <mat-card-title>Part Name</mat-card-title>
 
-<div class="tree">
-    <app-my-projects></app-my-projects>
-</div>
+    <form [formGroup]="partForm">
+
+        <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="tabChanged($event)">
+            <mat-tab label="General">
+
+                <mat-card class="general-information-container">
+
+                    <mat-card-title class="card-title-margin">Basic information</mat-card-title>
+                    <mat-card-content>
+
+                        <mat-form-field class="half-width master-data input-margin">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="partName" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                        <mat-icon class="icon">book</mat-icon>
+
+                        <mat-form-field class="half-width input-margin">
+                            <mat-label>Number</mat-label>
+                            <input matInput formControlName="partNumber" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                        <mat-form-field class="half-width input-margin">
+                            <mat-label>Version</mat-label>
+                            <input matInput formControlName="partVersion" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                        <mat-form-field class="textarea input-margin">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5"
+                                formControlName="partDescription" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()"></textarea>
+                        </mat-form-field>
+
+                    </mat-card-content>
+
+                </mat-card>
+
+            </mat-tab>
+            <mat-tab label="Manufacturer">
+
+                <mat-card>
+
+                    <mat-card-title class="card-title-margin">Manufacturer Location</mat-card-title>
+
+                    <mat-card-content>
+
+                        <mat-form-field class="half-width master-data input-margin">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="manufacturerName" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                        <mat-icon class="icon">book</mat-icon>
+
+                        <mat-form-field class="textarea input-margin">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5"
+                                formControlName="manufacturerDescription" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()"></textarea>
+                        </mat-form-field>
+
+                    </mat-card-content>
+
+                </mat-card>
+
+            </mat-tab>
+            <mat-tab label="Geometry"> Content 3 </mat-tab>
+            <mat-tab label="Settings"> 
+            
+                <mat-card class="card-title-margin">
+
+                    <mat-card-title>Settings</mat-card-title>
+
+                    <mat-card-content>
+                        
+                        <mat-form-field class="master-data input-margin">
+                            <mat-label>Purchase Price</mat-label>
+                            <input matInput formControlName="settingsPurchasePrice" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                        <mat-form-field class="master-data input-margin">
+                            <mat-label>Target Price</mat-label>
+                            <input matInput formControlName="settingsTargetPrice" (blur)="disableUndoButton()"
+                                (focus)="enableUndoButton()" (change)="addNewUndoEntity()">
+                        </mat-form-field>
+
+                    </mat-card-content>
+
+                </mat-card>
+                
+            </mat-tab>
+            <mat-tab label="Description"> Content 3 </mat-tab>
+            <mat-tab label="Documents"> Content 3 </mat-tab>
+            <mat-tab label="Overhead Settings"> Content 3 </mat-tab>
+            <mat-tab label="Country Settings"> Content 3 </mat-tab>
+        </mat-tab-group>
+
+    </form>
+
+    <div class="actions-container">
+
+        <button mat-raised-button class="action-button" color="primary"
+            [disabled]="undoParts.length<2 && buttonVisibility===false" (click)="undoLastChange()">Undo</button>
+        <button mat-raised-button class="action-button" color="primary">Save</button>
+        <button mat-raised-button class="action-button" color="primary" (click)="undoAllChanges()">Cancel</button>
+
+    </div>
+
+    <button (click)="test()">Test</button>
+
+</mat-card>
